@@ -156,7 +156,7 @@ def main():
         print('Successfully Created Database')
 
     except (Exception, psycopg2.Error) as error:
-        print('Error connecting to PostgreSQL:', error)
+        print('Error with PostgreSQL:', error)
 
     finally:
         # Close the database connection

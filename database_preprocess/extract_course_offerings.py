@@ -6,14 +6,13 @@ import argparse
 import json
 
 def get_args():
-    parser = argparse.ArgumentParser(description="Exctract & validate course offering data")
+    parser = argparse.ArgumentParser(description='Exctract & validate course offering data')
     parser.add_argument(
-        "file_path", type=str, help="Path to the .html source file from the student portal"
+        'file_path', type=str, help='Path to the .html source file from the student portal'
     )
     parser.add_argument(
-        "save_path", type=str, help="Path to the .json file where you want to save the result"
+        'save_path', type=str, help='Path to the .json file where you want to save the result'
     )
-
     return parser.parse_args()
 
 def main():

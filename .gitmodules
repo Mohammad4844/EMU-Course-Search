@@ -1,0 +1,3 @@
+[submodule "course_search"]
+	path = course_search
+	url = https://github.com/Mohammad4844/course_search_webapp

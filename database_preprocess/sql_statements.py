@@ -5,8 +5,8 @@ SELECT typname FROM pg_type WHERE typname in ('days', 'terms')
 
 def enum_creation_sql():
     return """
-CREATE TYPE IF NOT EXISTS days AS ENUM ('M', 'T', 'W', 'R', 'F', 'S', 'U', 'N/A');
-CREATE TYPE IF NOT EXISTS terms AS ENUM ('Fall', 'Winter', 'Summer');
+CREATE TYPE days AS ENUM ('M', 'T', 'W', 'R', 'F', 'S', 'U', 'N/A');
+CREATE TYPE terms AS ENUM ('Fall', 'Winter', 'Summer');
 """
 
 def schema_tables_sql():
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS courses (
     FOREIGN KEY (department_id) REFERENCES departments (id)
 );
 
-CREATE TABLE IF NOT EXISTS attributes (
+CREATE TABLE IF NOT EXISTS characteristics (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255)
 );
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS meetings (
     end_time TIME,
     day days,
     location VARCHAR(255),
-    type VARCHAR(255),
+    meet_type VARCHAR(255),
     FOREIGN KEY (offering_id) REFERENCES offerings (id)
 );
 
@@ -57,12 +57,12 @@ CREATE TABLE IF NOT EXISTS instructors (
     name VARCHAR(255)
 );
 
-CREATE TABLE IF NOT EXISTS course_attribute (
+CREATE TABLE IF NOT EXISTS course_characteristic (
     id SERIAL PRIMARY KEY,
     course_id INT,
-    attribute_id INT,
+    characteristic_id INT,
     FOREIGN KEY (course_id) REFERENCES courses (id),
-    FOREIGN KEY (attribute_id) REFERENCES attributes (id)
+    FOREIGN KEY (characteristic_id) REFERENCES characteristics (id)
 );
 
 
@@ -85,14 +85,14 @@ def insert_department_sql():
 INSERT INTO departments (code) VALUES (%s) RETURNING id;
 """
 
-def select_attribute_sql():
+def select_characteristic_sql():
     return """
-SELECT id FROM attributes WHERE name = %s;
+SELECT id FROM characteristics WHERE name = %s;
 """
 
-def insert_attribute_sql():
+def insert_characteristic_sql():
     return """
-INSERT INTO attributes (name) VALUES (%s) RETURNING id;
+INSERT INTO characteristics (name) VALUES (%s) RETURNING id;
 """
 
 def select_course_sql():
@@ -107,14 +107,14 @@ INSERT INTO courses (title, department_id, code, credits) VALUES
 (%s, %s, %s, %s) RETURNING id;
 """
 
-def select_course_attribute_sql():
+def select_course_characteristic_sql():
     return """
-SELECT id FROM course_attribute WHERE course_id = %s AND attribute_id = %s;
+SELECT id FROM course_characteristic WHERE course_id = %s AND characteristic_id = %s;
 """
 
-def insert_course_attribute_sql():
+def insert_course_characteristic_sql():
     return """
-INSERT INTO course_attribute (course_id, attribute_id) VALUES 
+INSERT INTO course_characteristic (course_id, characteristic_id) VALUES 
 (%s, %s) RETURNING id;
 """
 
@@ -133,12 +133,12 @@ VALUES (%s, %s, %s, %s, %s, %s) RETURNING id;
 def select_meeting_sql():
     return """
 SELECT id FROM meetings WHERE offering_id = %s AND start_time = %s AND
-end_time = %s AND day = %s AND location = %s AND type = %s;
+end_time = %s AND day = %s AND location = %s AND meet_type = %s;
 """
 
 def insert_meeting_sql():
     return """
-INSERT INTO meetings (offering_id, start_time, end_time, day, location, type)
+INSERT INTO meetings (offering_id, start_time, end_time, day, location, meet_type)
 VALUES (%s, %s, %s, %s, %s, %s) RETURNING id;
 """
 

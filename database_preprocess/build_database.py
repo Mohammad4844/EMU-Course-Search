@@ -57,7 +57,7 @@ def add_offering(cursor, offering_data):
     if 'attributes' in offering_data:
         for attribute in offering_data['attributes']:
             attribute_id = select_else_insert(
-                cursor, select_attribute_sql(), insert_attribute_sql(),
+                cursor, select_characteristic_sql(), insert_characteristic_sql(),
                 (attribute,) 
             )
             attribute_ids.append(attribute_id)
@@ -71,8 +71,8 @@ def add_offering(cursor, offering_data):
 
     # 2b) Course-Attribute Pairs
     for attribute_id in attribute_ids:
-        select_else_insert(cursor, select_course_attribute_sql(), 
-            insert_course_attribute_sql(), (course_id, attribute_id)
+        select_else_insert(cursor, select_course_characteristic_sql(), 
+            insert_course_characteristic_sql(), (course_id, attribute_id)
         )
     
     # 3a) Offering

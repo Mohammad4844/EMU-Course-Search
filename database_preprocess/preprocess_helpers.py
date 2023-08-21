@@ -36,7 +36,7 @@ def extract_body_info(html):
     map['schedule_type'] = meeting_info[i + 5]
     map['instructors'] = meeting_info[i + 6].split(',')
 
-    days = meeting_info[2]
+    days = meeting_info[i + 2]
     if days == '\xa0': # \xa0 is a 'space' in html/soup
       meeting_times.append(map | {'day': ''})
     else:

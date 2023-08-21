@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', async function temp() {
     let characteristics = Array.from(document.getElementById('characteristics').selectedOptions).map(option => option.value);
     let availabilities = get_availabilities_from_html();
 
-    api_url = 'http://127.0.0.1:3000/search?'
+    api_url = 'http://course-search-api-load-balancer-2038864342.us-east-1.elb.amazonaws.com/search?'
 
     
     if (departments.length > 0) {

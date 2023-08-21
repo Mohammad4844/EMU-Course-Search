@@ -9,6 +9,10 @@ from build_database import build_db
 s3_client = boto3.client('s3')
 
 def lambda_handler(event, context):
+    """
+    Requires the appropriate env variables declared, as specified in build_database.py
+    """
+
     try:
         s3_Bucket_Name = event["Records"][0]["s3"]["bucket"]["name"]
         s3_File_Name = event["Records"][0]["s3"]["object"]["key"]
@@ -23,8 +27,6 @@ def lambda_handler(event, context):
     except Exception as err:
         print(err)
         
-    # TODO implement
     return {
         'statusCode': 200,
-        # 'body': json.dumps()
     }

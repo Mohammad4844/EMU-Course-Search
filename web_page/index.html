@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Search</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+</head>
+<body class="d-flex flex-column align-items-center justify-content-center">
+    <script src="script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark w-100" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">EMU Course Search</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+  
+            </ul>
+            <form class="d-flex" role="search">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="https://github.com/Mohammad4844/EMU-Course-Search">Github Code</a>
+                    </li>
+                  </ul>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+      <br>
+      <div class="container-fluid mb-3 w-75 display-6" style="font-size: 18px;" >
+        This is an unofficial alternative to EMU's course search. Allows you to search based on an availability schedule. 
+        Add the time windows in which you want your classes below.
+      </div>
+
+    <form class="row g-3  mb-3 m-3 w-75  border-dark-subtle border rounded p-3">
+        <div class="col-md-6">
+            <label for="departments" class="form-label">Departments</label>
+            <select multiple id="departments" class=" js-example-basic-single form-select form-control" placeholder="">
+                <!-- <option value=""></option> -->
+                <option value="ACC">ACC</option>
+                <option value="AFC">AFC</option>
+                <option value="AGIN">AGIN</option>
+                <option value="ANTH">ANTH</option>
+                <option value="ATM">ATM</option>
+                <option value="AMUS">AMUS</option>
+                <option value="ACND">ACND</option>
+                <option value="AD">AD</option>
+                <option value="ARTE">ARTE</option>
+                <option value="ARTH">ARTH</option>
+                <option value="ARTS">ARTS</option>
+                <option value="AD2D">AD2D</option>
+                <option value="AD3D">AD3D</option>
+                <option value="ADGD">ADGD</option>
+                <option value="ADPM">ADPM</option>
+                <option value="AMA">AMA</option>
+                <option value="AHPR">AHPR</option>
+                <option value="ASTR">ASTR</option>
+                <option value="ATTR">ATTR</option>
+                <option value="AVFO">AVFO</option>
+                <option value="AVFT">AVFT</option>
+                <option value="AVMT">AVMT</option>
+                <option value="AVT">AVT</option>
+                <option value="BIO">BIO</option>
+                <option value="BIOT">BIOT</option>
+                <option value="BMMT">BMMT</option>
+                <option value="CTAA">CTAA</option>
+                <option value="CTAO">CTAO</option>
+                <option value="CTAT">CTAT</option>
+                <option value="CTAR">CTAR</option>
+                <option value="CHEM">CHEM</option>
+                <option value="CHL">CHL</option>
+                <option value="CIVE">CIVE</option>
+                <option value="CLSC">CLSC</option>
+                <option value="CLRA">CLRA</option>
+                <option value="CASI">CASI</option>
+                <option value="COB">COB</option>
+                <option value="COT">COT</option>
+                <option value="COTS">COTS</option>
+                <option value="CSD">CSD</option>
+                <option value="COMM">COMM</option>
+                <option value="CMT">CMT</option>
+                <option value="CEET">CEET</option>
+                <option value="CAE">CAE</option>
+                <option value="COSC">COSC</option>
+                <option value="CNST">CNST</option>
+                <option value="COUN">COUN</option>
+                <option value="CSIE">CSIE</option>
+                <option value="CRTW">CRTW</option>
+                <option value="CRM">CRM</option>
+                <option value="CLMS">CLMS</option>
+                <option value="CURR">CURR</option>
+                <option value="DANC">DANC</option>
+                <option value="DANT">DANT</option>
+                <option value="DS">DS</option>
+                <option value="DTC">DTC</option>
+                <option value="DSTD">DSTD</option>
+                <option value="ECE">ECE</option>
+                <option value="ESSC">ESSC</option>
+                <option value="ECON">ECON</option>
+                <option value="EDU">EDU</option>
+                <option value="EDLD">EDLD</option>
+                <option value="EDPS">EDPS</option>
+                <option value="EDST">EDST</option>
+                <option value="EECE">EECE</option>
+                <option value="EM">EM</option>
+                <option value="ET">ET</option>
+                <option value="ENGL">ENGL</option>
+                <option value="ESLN">ESLN</option>
+                <option value="EDT">EDT</option>
+                <option value="ENVI">ENVI</option>
+                <option value="EXSC">EXSC</option>
+                <option value="FMI">FMI</option>
+                <option value="FERM">FERM</option>
+                <option value="FIN">FIN</option>
+                <option value="FLAN">FLAN</option>
+                <option value="FRNH">FRNH</option>
+                <option value="GEOG">GEOG</option>
+                <option value="GERN">GERN</option>
+                <option value="IHHS">IHHS</option>
+                <option value="HLAD">HLAD</option>
+                <option value="HLED">HLED</option>
+                <option value="HPHP">HPHP</option>
+                <option value="HEBR">HEBR</option>
+                <option value="GHPR">GHPR</option>
+                <option value="HIST">HIST</option>
+                <option value="HNRS">HNRS</option>
+                <option value="HRM">HRM</option>
+                <option value="ISAC">ISAC</option>
+                <option value="IA">IA</option>
+                <option value="IS">IS</option>
+                <option value="IT">IT</option>
+                <option value="IMC">IMC</option>
+                <option value="IDE">IDE</option>
+                <option value="IDES">IDES</option>
+                <option value="IB">IB</option>
+                <option value="JPNE">JPNE</option>
+                <option value="JRNL">JRNL</option>
+                <option value="KORN">KORN</option>
+                <option value="LNGE">LNGE</option>
+                <option value="LAW">LAW</option>
+                <option value="LEAD">LEAD</option>
+                <option value="LTEC">LTEC</option>
+                <option value="LING">LING</option>
+                <option value="LITR">LITR</option>
+                <option value="MGMT">MGMT</option>
+                <option value="MKTG">MKTG</option>
+                <option value="MATH">MATH</option>
+                <option value="ME">ME</option>
+                <option value="MET">MET</option>
+                <option value="MSL">MSL</option>
+                <option value="MUSC">MUSC</option>
+                <option value="MUED">MUED</option>
+                <option value="MUEN">MUEN</option>
+                <option value="MUTH">MUTH</option>
+                <option value="NSCI">NSCI</option>
+                <option value="NURS">NURS</option>
+                <option value="OCTH">OCTH</option>
+                <option value="OM">OM</option>
+                <option value="ORPR">ORPR</option>
+                <option value="LEGL">LEGL</option>
+                <option value="LEGA">LEGA</option>
+                <option value="PHIL">PHIL</option>
+                <option value="PHED">PHED</option>
+                <option value="PEGN">PEGN</option>
+                <option value="PSCI">PSCI</option>
+                <option value="PAS">PAS</option>
+                <option value="PHY">PHY</option>
+                <option value="PLSC">PLSC</option>
+                <option value="PC">PC</option>
+                <option value="PRCT">PRCT</option>
+                <option value="PDET">PDET</option>
+                <option value="PSY">PSY</option>
+                <option value="PURL">PURL</option>
+                <option value="QUAL">QUAL</option>
+                <option value="RDNG">RDNG</option>
+                <option value="RLST">RLST</option>
+                <option value="SAGA">SAGA</option>
+                <option value="SAGG">SAGG</option>
+                <option value="SAGS">SAGS</option>
+                <option value="SET">SET</option>
+                <option value="SAG">SAG</option>
+                <option value="SFCE">SFCE</option>
+                <option value="SWRK">SWRK</option>
+                <option value="SWKE">SWKE</option>
+                <option value="SOCL">SOCL</option>
+                <option value="SPNH">SPNH</option>
+                <option value="SPAI">SPAI</option>
+                <option value="SPCI">SPCI</option>
+                <option value="SPEI">SPEI</option>
+                <option value="SPGN">SPGN</option>
+                <option value="SPLI">SPLI</option>
+                <option value="SMGT">SMGT</option>
+                <option value="STAT">STAT</option>
+                <option value="EDUC">EDUC</option>
+                <option value="SABR">SABR</option>
+                <option value="SCM">SCM</option>
+                <option value="SWAH">SWAH</option>
+                <option value="TSLN">TSLN</option>
+                <option value="TM">TM</option>
+                <option value="TS">TS</option>
+                <option value="THRC">THRC</option>
+                <option value="UNIV">UNIV</option>
+                <option value="URED">URED</option>
+                <option value="URP">URP</option>
+                <option value="WGST">WGST</option>
+                <option value="WRTG">WRTG</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="course_codes" class="form-label">Course Levels</label>
+            <select multiple id="course_codes" class=" js-example-basic-single form-select form-control" placeholder="">
+                <!-- <option value=""></option> -->
+                <optgroup label="Undergraduate">
+                    <option value="1">100-199</option>
+                    <option value="2">200-299</option>
+                    <option value="3">300-399</option>
+                    <option value="4">400-499</option>
+                </optgroup>
+                <optgroup label="Graduate">
+                    <option value="5">500-599</option>
+                    <option value="6">600-699</option>
+                    <option value="7">700+</option>
+                </optgroup>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="characteristics" class="form-label">Attributes</label>
+            <select multiple id="characteristics" class=" js-example-basic-single form-select form-control" placeholder="">
+                <!-- <option value=""></option> -->
+                <optgroup label="Gen Ed">
+                    <option value="Gen Ed Effect Communication">Effective Communication</option>
+                    <option value="Gen Ed Quantve Reasoning">Quantitative Reasoning</option>
+                    <option value="Gen Ed Disciplines-Arts">Arts</option>
+                    <option value="Gen Ed Disciplines-Humanities">Humanities</option>
+                    <option value="Gen Ed Disciplines-Nat Science">Natural Science</option>
+                    <option value="Gen Ed Disciplines-Soc Science">Social Science</option>
+                    <option value="Gen Ed Global Awareness">Global Awareness</option>
+                    <option value="Gen Ed US Diversity">US Diversity</option>
+                </optgroup>
+                <optgroup label="Others">
+                    <option value="Honors Only Section">Honors Sections</option>
+                    <option value="Writing Intensive">Writing Intensive</option>
+                    <option value="Gen Ed Lrng Beyond Clsrm">Learning Beyod the Classroom (LBC)</option>
+                </optgroup>
+            </select>
+        </div>
+        
+        <div id="todo-list" class="d-flex flex-column col-md-12 align-items-center">
+            <label class="form-label">Availabilities</label>
+            <div class="d-flex mb-3 justify-content-center align-items-end w-75">
+                <div class="w-25 m-2">
+                    <label for="day" class="form-label">Days</label>
+                    <select multiple id="days" class="js-example-basic-single form-select form-control " placeholder="Days">
+                        <option value="M">Monday</option>
+                        <option value="T">Tuesday</option>
+                        <option value="W">Wednesday</option>
+                        <option value="R">Thursday</option>
+                        <option value="F">Friday</option>
+                    </select>
+                </div>
+                <div class="w-25 m-2">
+                    <label for="start-time" class="form-label">Start</label>
+                    <input type="time" id="start-time" class="form-control ">
+                </div>
+                <div class="w-25 m-2">
+                    <label for="end-time" class="form-label">End</label>
+                    <input type="time" id="end-time" class="form-control">
+                </div>
+                <div class="w-25 m-2 ">
+                    <button id="add-entry" type="button" class="btn btn-outline-dark">Add Availability</button>
+                </div>
+            </div>
+            <ul id="entries" class="list-group"></ul>
+        </div>
+
+        <div class="col-md-12 d-flex align-items-center justify-content-center">
+            <button id="search" type="button" class="btn btn-dark">Search</button>
+        </div>
+
+      </form>
+
+      <div id="results" class="w-75 d-flex flex-column justify-content-center align-items-center">
+      </div>
+
+      
+</body>
+</html>

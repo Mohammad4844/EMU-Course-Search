@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', async function temp() {
       paramaters.push(array_to_url_params(availabilities, 'availabilities'));
     }
 
-    if (paramaters.lentgh > 0) {
+    if (paramaters.length > 0) {
       api_url += paramaters.join('&')
     }
 

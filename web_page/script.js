@@ -180,6 +180,7 @@ document.addEventListener('DOMContentLoaded', async function temp() {
     
     const results = await response.json();
 
+    resultsContainer.innerHTML = ''
     display_results(resultsContainer, results)
   });
 });

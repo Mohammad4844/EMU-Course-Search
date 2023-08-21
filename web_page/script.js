@@ -162,19 +162,24 @@ document.addEventListener('DOMContentLoaded', async function temp() {
 
     api_url = 'https://emu-course-search.imxxn.net/search?'
 
-    
+    let paramaters = []
     if (departments.length > 0) {
-      api_url += array_to_url_params(departments, 'departments');
+      paramaters.push(array_to_url_params(departments, 'departments'));
     }
     if (course_codes.length > 0) {
-      api_url += array_to_url_params(course_codes, 'course_codes');
+      paramaters.push(array_to_url_params(course_codes, 'course_codes'));
     }
     if (characteristics.length > 0) {
-      api_url += array_to_url_params(characteristics, 'characteristics');
+      paramaters.push(array_to_url_params(characteristics, 'characteristics'));
     }
     if (availabilities.length > 0) {
-      api_url += array_to_url_params(availabilities, 'availabilities');
+      paramaters.push(array_to_url_params(availabilities, 'availabilities'));
     }
+
+    if (paramaters.lentgh > 0) {
+      api_url += paramaters.join('&')
+    }
+
 
     const response = await fetch(api_url);
     

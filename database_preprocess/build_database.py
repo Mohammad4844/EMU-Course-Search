@@ -2,16 +2,7 @@ from sql_statements import *
 
 import psycopg2
 import os
-import json
-import argparse
 from tqdm import tqdm
-
-def get_args():
-    parser = argparse.ArgumentParser(description='Build database from dataset')
-    parser.add_argument(
-        'file_path', type=str, help='Path to the .json data file'
-    )
-    return parser.parse_args()
 
 def select_else_insert(cursor, select_sql, insert_sql, args):
     select_result = select(cursor, select_sql, args)
@@ -109,9 +100,7 @@ def add_offering(cursor, offering_data):
                 insert_meeting_instructor_sql(), (meeting_id, instructor_id)
             )
 
-def main():
-    args = get_args()
-
+def build_db(offerings_data):
     # Database credentials
     env = os.environ
     db_host = env.get('DB_HOST')
@@ -144,9 +133,7 @@ def main():
         cursor.execute(schema_tables_sql())
         print('Schema Tables Built / Already Exist')
 
-        file_path = args.file_path
-        with open(file_path, 'r') as f:
-            offerings_data = json.load(f)
+
 
         # Insert the offering data into the database
         for offering_data in tqdm(offerings_data, desc='Building Database', unit='iteration'):
@@ -164,6 +151,3 @@ def main():
             cursor.close()
             connection.close()
             print('Closed PostgreSQL Connection')
-
-if __name__ == '__main__':
-    main()

@@ -178,13 +178,70 @@ document.addEventListener('DOMContentLoaded', async function temp() {
 
     const response = await fetch(api_url);
     
-    const data = await response.json();
-    console.log(response.status); // Check the response status
-console.log(response.headers); // Check the response headers
-    console.log(data);
-    resultsContainer.textContent += data
+    const results = await response.json();
+
+    display_results(resultsContainer, results)
   });
 });
 
+
+function display_results(container, results) {
+  day_map = {'M': 'Monday', 'T': 'Tuesday', 'W': 'Wednesday', 'R': 'Thursday', 'F': 'Friday', 'S': 'Saturday', 'U': 'Sunday', 'N/A': 'N/A'};
+
+  function time_24_to_12(time) {
+    if (time === null)
+      return '-';
+    time = time.substring(11, 16) // get HH:MM from ISO format
+    const hour = parseInt(time.substring(0, 2));
+    if (hour === 0) {
+      return '12' + time.substring(2) + ' am';
+    } else if (hour < 12) {
+      return time.toString() + ' am';
+    } else if (hour === 12) {
+      return '12' + time.substring(2) + ' pm';
+    } else {
+      return (hour - 12).toString() + time.substring(2) + ' pm';
+    }
+  }
+
+  function display_meeting(meeting) {
+    const day = day_map[meeting['day']];
+    const start_time = time_24_to_12(meeting['start_time']);
+    const end_time = time_24_to_12(meeting['end_time']);
+    const instructors = meeting['instructors'].map(x => x['name']);
+
+    return `
+    <li class="list-group-item d-flex justify-content-center align-items-center">
+        <div class="w-25">${day}</div>
+        <div class="w-25">${start_time}</div>
+        <div class="w-25">${end_time}</div>
+        <div class="w-50">${instructors.length > 0 ?  instructors.join(", ") : ''}</div>
+    </li>
+    `;
+  }
+
+
+  results.forEach(offering => {
+    const crn = offering['crn'];
+    const dept = offering['course']['department']['code'];
+    const course_code = offering['course']['code'];
+    const credits = offering['course']['credits'];
+    const title = offering['course']['title'];
+    const characteristics = offering['course']['characteristics'].map(x => x['name']);
+    const meetings = offering['meetings'];
+
+    container.innerHTML += `
+      <div class="card w-75 mb-3">
+        <div class="card-body bg-light">
+          <h5 class="card-title">${dept} ${course_code} - ${title}</h5>
+          <p class="card-text">CRN: ${crn} &nbsp; &nbsp; &nbsp; Credits: ${credits} &nbsp; &nbsp; &nbsp; ${ characteristics.length > 0 ? 'Attributes: ' + characteristics.join(", ") : ''}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          ${meetings.map(x => display_meeting(x)).join(' ')}
+        </ul>
+      </div>
+    `;
+  });
+}
 
 

@@ -12,6 +12,7 @@ Along with this, you can also apply other typical features like departments (COS
 - [Backend API](#backend-api)
 - [Database](#database)
 - [Frontend](#frontend)
+- [Problems I Faced](#technical-problems-i-faced)
 
 ## System Design
 Here's a brief overview of the overall system:
@@ -66,3 +67,20 @@ A static webpage that interacts with the backend api to show course search resul
 - Static webpage that uses Bootstrap for styling
 - Hosted on Github Pages
 - For details on frontend, see [web_page](web_page)
+
+## Technical Problems I Faced
+- Backend API: writing the search query itself (filtering based on availabilities).
+  - The logic when trying to match the right availabilities is very non-intuitive. Among other things, it involves 2 complex grouping queries followed by a manual iteration through the results.
+  - See the [implementation](https://github.com/Mohammad4844/course_search_webapp/blob/main/app/controllers/search_controller.rb#L58-L88) for yourself.
+
+- Frontend: figuring out how to 'join' time intervals input by the user that overlapped.
+  - As an example: a user enters first Monday 9am-1pm, and then Monday 12pm-5pm. In this case we don't want them to be 2 intervals, but rather one joined interval that is: Monday 9am-5pm.
+  - The key factor here was keeping this time & space efficienct since this had to be computed on the user's end and the the naive approach is computationally very expensive.
+  - By using some smart filtering beforehand, I ended up with a nice [implementation](https://github.com/Mohammad4844/EMU-Course-Search/blob/main/web_page/script.js#L76-L133).
+
+- AWS/Hosting: having to support https and lots of issues with CORS.
+  - Parts of the solution involved registering a domain, obtaining an ssl certificate and a lot of configuration changes in Rails.
+  
+- Database: a table named 'attributes' broke everything when the db was loaded in rails.
+  - The main issue here was all the time it took to figure out what the problem even was. Since 'attributes' is a keyword (sort of) for rails, it conflicted heavily because i had a table with the same name.
+  - I had to re-name the table, along with update code in the db builder

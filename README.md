@@ -12,7 +12,7 @@ Along with this, you can also apply other typical features like departments (COS
 - [Backend API](#backend-api)
 - [Database](#database)
 - [Frontend](#frontend)
-- [Problems I Faced](#technical-problems-i-faced)
+- [Technical Problems I Faced](#technical-problems-i-faced)
 
 ## System Design
 Here's a brief overview of the overall system:

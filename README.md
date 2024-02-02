@@ -1,5 +1,5 @@
 # EMU Course Search
-This is an unofficial alternative to EMU's Course Search. [Here's](https://mohammad4844.github.io/EMU-Course-Search/web_page) a link to the hosted page.
+This is an unofficial alternative to EMU's Course Search. The hosted version ([here](https://mohammad4844.github.io/EMU-Course-Search/web_page)) was shut down on 2/2/2024.
 
 The main feature here is that you can search courses based on your availabilities. As an example, you can say that your availabilities are: Monday 10am - 3pm, Tuesday 12pm - 6pm, Wednesday 8am - 12pm. It will return only the courses that fall into your availabilty windows. 
 

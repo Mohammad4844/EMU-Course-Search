@@ -1,7 +1,7 @@
 # EMU Course Search
-This is an unofficial alternative to EMU's Course Search. The hosted version ([here](https://mohammad4844.github.io/EMU-Course-Search/web_page)) was shut down on 2/2/2024.
+This is an unofficial alternative to EMU's Course Search. The hosted version ([here](https://mohammad4844.github.io/EMU-Course-Search/web_page)) was shut down on 2/2/2024 (because I ran out of free tier :disappointed:).
 
-The main feature here is that you can search courses based on your availabilities. As an example, you can say that your availabilities are: Monday 10am - 3pm, Tuesday 12pm - 6pm, Wednesday 8am - 12pm. It will return only the courses that fall into your availabilty windows. 
+The main feature here is that you can search courses based on your availabilities. As an example, you can say that your availabilities are: Monday 10am - 3pm, Tuesday 12pm - 6pm, Wednesday 8am - 12pm. It will return only the courses that fall into your availabilty windows. Note that this is not a functionality in EMU's search system.
 
 Along with this, you can also apply other typical features like departments (COSC or WRTG), course levels (100-199 or 400-499), or attributes (Gen Ed Arts, Honors Sections).
 
